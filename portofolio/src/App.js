@@ -9,11 +9,15 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <Navbar />
+          <StyledNavbar onTop={window.scrollY > 0} />
           <Suspense fallback={<div>Loading...</div>}>
             <Container>
               <Switch>
                 <Route path="/" exact component={page.Home} />
+                <Route path="/project" exact component={page.Signin} />
+                <Route path="/about" exact component={page.Contact} />
+                <Route path="/contact" exact component={page.Contact} />
+                <Route path="/admin" exact component={page.Home} />
                 <Route path="/signin" exact component={page.Signin} />
               </Switch>
             </Container>
@@ -24,14 +28,10 @@ class App extends Component {
   }
 }
 
-const Container = styled.div`
-  background: chartreuse;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const Container = styled.div``;
+
+const StyledNavbar = styled(Navbar)`
+  background: ${props => (props.onTop ? "darkred" : "limegreen")};
 `;
 
 export default App;
